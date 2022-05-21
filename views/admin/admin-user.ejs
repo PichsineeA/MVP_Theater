@@ -1,0 +1,52 @@
+<%- include("../partials/headerAdmin.ejs") %>
+
+<div class="py-5">
+    <div class="d-flex justify-content-between">
+        <h2 class="fw-bold">
+            &nbsp&nbspUser table            
+        </h2>
+    </div>
+    <hr>
+
+<table class="table" id="table-showtime">
+    <thead class="h3">
+        <tr class="align-top text-center">
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">username</th>
+            <th scope="col">E-mail</th>
+        </tr>
+    </thead>
+    <tbody class="h5">
+    <% user.forEach(function(user){ %>
+        <tr class="align-middle text-center">
+            <td scope="col">
+                <div id="<%= user._id %>" style="cursor: pointer;" title="edit">
+                    <h5><%= user.firstName %></h5>
+                </div>                                
+            </td>
+
+            <td scope="col">
+                <div id="<%= user._id %>" style="cursor: pointer;" title="edit">
+                    <h5><%= user.lastName %></h5>
+                </div>                                
+            </td>
+
+            <td scope="col">
+                <div id="<%= user._id %>" style="cursor: pointer;" title="edit">
+                    <h5><%= user.username %></h5>
+                </div>                                
+            </td>
+            
+            <td scope="col">
+                <div id="<%= user._id %>" style="cursor: pointer;" title="edit">
+                    <h5><%= user.email %></h5>
+                </div>                                
+            </td>
+        </tr>
+    <% }) %>
+    </tbody>
+</table>
+</div>
+
+<%- include("../partials/footerAdmin.ejs") %>

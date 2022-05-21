@@ -1,0 +1,22 @@
+<%- include("partials/header.ejs") %>
+
+<main>
+
+<div class="cinemaszone">
+
+    <div class="container d-flex flex-wrap justify-content-center">
+        
+            <h1 class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-decoration-none">Available cinema</h1>
+        
+    </div>
+
+    <div class="list-group">
+        <% cinemas.forEach(function(cinemas){ %>
+        <a href="/movie/cinemas/<%= cinemas._id %>" class="list-group-item list-group-item-action">&nbsp&nbsp&nbsp&nbsp <%= cinemas.name %></a>   
+        <% }); %>
+    </div>
+</div>
+
+</main>
+
+<%- include("partials/footer.ejs") %>

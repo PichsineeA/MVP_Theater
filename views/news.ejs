@@ -1,0 +1,89 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container d-flex flex-wrap justify-content-center">
+    <a href="#" class="col-12 col-lg-auto mb-3 mb-lg-0 text-dark text-decoration-none">
+      <h1 class="BoxOffice">News</h1>
+    </a>
+  </div>
+
+<div class="news">
+    <div class="album py-5">
+        <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                <div class="text-center">
+                    <img src="/assets/img/1647002166329.jpeg" class="rounded" alt="..." width="250rem">
+                </div>
+
+                <div class="text-center">
+                    <img src="/assets/img/1647002191005.jpeg" class="rounded" alt="..." width="250rem">
+                </div>
+
+                <div class="text-center">
+                    <img src="/assets/img/1650287179217.jpeg" class="rounded" alt="..." width="250rem">
+                </div>
+
+                <div class="text-center">
+                    <img src="/assets/img/1647002257027.jpeg" class="rounded" alt="..." width="250rem">
+                </div>
+
+                <div class="text-center">
+                    <img src="/assets/img/1647002289648.jpeg" class="rounded" alt="..." width="250rem">
+                </div>
+
+                <div class="text-center">
+                    <img src="/assets/img/1647002312424.jpeg" class="rounded" alt="..." width="250rem">
+                </div>
+
+                <div class="text-center">
+                    <img src="/assets/img/1647002372519.jpeg" class="rounded" alt="..." width="250rem">
+                </div>
+
+                <div class="text-center">
+                    <img src="/assets/img/1647002406340.jpeg" class="rounded" alt="..." width="250rem">
+                </div>
+
+                <div class="text-center">
+                    <img src="/assets/img/1647002443378.jpeg" class="rounded" alt="..." width="250rem">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex flex-wrap justify-content-center">
+    <a href="#" class="col-12 col-lg-auto mb-3 mb-lg-0 text-dark text-decoration-none">
+      <h1 class="BoxOffice">Coming SOON</h1>
+    </a>
+  </div>
+
+<div class="news">
+    <div class="album py-5">
+        <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                <% movie.forEach(function(movie){ %>
+
+                    <a href="/movieInfo/<%= movie._id %>">
+                      <div class="col">
+                          <div class="card" style="width: 13rem;">
+                              <img src="<%= movie.image %>" class="card-img-top" alt="...">
+                              <div class="card-body">
+                                  <p class="card-text"><%= movie.date %></p>
+                                  <p class="card-text"><%= movie.name %></p>
+                              </div>
+                          </div>
+                      </div>
+                      </a>
+    
+             <% }); %>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

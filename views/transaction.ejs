@@ -1,0 +1,80 @@
+<%- include('partials/header.ejs') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-8 col-md-12">
+            <div class="w-100" style="height: 600px;">
+                <div class="p-3">
+                    <div class="d-flex justify-content-center">
+                        <img src="/assets/img/logo.png" height="80px">
+                    </div>
+                    <hr>
+                    <div class="px-2">
+                        <div class="row my-2">
+                            <h5 class="col-5" style="font-weight: 600;">Cinema</h5>
+                            <h5 class="text-end col-7"><%= cinemas.name %></h5>
+                        </div>
+                        <div class="row my-2">
+                            <h5 class="col-5" style="font-weight: 600;">Movie Title</h5>
+                            <h5 class="text-end col-7"><%= showtime.movie.name %></h5>
+                        </div>
+                        <div class="row my-2">
+                            <h5 class="col-5" style="font-weight: 600;">Showtime</h5>
+                            <h5 class="text-end col-7"><%= showtime.time %></h5>
+                        </div>
+                        <div class="row my-2">
+                            <h5 class="col-5" style="font-weight: 600;">Theater No.</h5>
+                            <h5 class="text-end col-7"><%= theater.theaterNo %></h5>
+                        </div>
+                        <div class="row mt-2">
+                            <h5 class="col-5" style="font-weight: 600;">Selected Seat</h5>
+                            <h5 class="text-end col-7"><%= seatNo %></h5>
+                            <div class="px-3 mt-2">
+                                <hr class="mb-0">
+                                <hr class="mt-1">
+                            </div>
+                        </div>
+                        <div class="row">                        
+                            <h6 class="col-5" style="font-weight: 600;">Sub Total:</h6>
+                            <h6 class="text-end col-7"><%= subTotal.toFixed(2) %> Bath</h6>
+                        </div>  
+                        <div class="row">                        
+                            <h6 class="col-5" style="font-weight: 600;">VAT (7%):</h6>
+                            <h6 class="text-end col-7"><%= vat.toFixed(2) %> Bath</h6>
+                        </div>                    
+                        <div class="row">                        
+                            <h5 class="col-5" style="font-weight: bolder;">Total:</h5>
+                            <h5 class="text-end col-7"><%= total.toFixed(2) %> Bath</h5>
+                        </div>
+                    </div>
+                </div>
+                <form action="/movie/cinemas/<%= cinemas._id %>/showtime/<%= showtime._id %>/checkout" method="POST">
+                    <input class="visually-hidden" value="<%= currentUser._id %>" type="text" name="transaction[customer]">
+                    <input class="visually-hidden" value="<%= cinemas.branch %>" type="text" name="transaction[branch]">
+                    <input class="visually-hidden" value="<%= showtime.movie.name %>" type="text" name="transaction[movie]">
+                    <input class="visually-hidden" value="<%= showtime.time %>" type="text" name="transaction[showtime]">
+                    <input class="visually-hidden" value="<%= theater.theaterNo %>" type="text" name="transaction[theater]">
+                    <input class="visually-hidden" value="<%= seatNo %>" type="text" name="transaction[seat]">
+                    <input class="visually-hidden" value="<%= total %>" type="number" name="transaction[total]">
+                    <div style="height: 93px;" class="m-0 p-0">
+                        <button class="w-100 h-100 checkout rounded-0">
+                            <span>Check Out</span>
+                        </button>
+                        <% if(Array.isArray(seatNo)){ %>                    
+                            <% seatNo.forEach(function(seatNo){ %>
+                            <input class="visually-hidden" value="<%= seatNo %>" type="text" name="seatNo">
+                            <% }); %>
+                        <% }else{ %>
+                        <input class="visually-hidden" value="<%= seatNo %>" type="text" name="seatNo">
+                        <% } %>
+                    </div>                    
+                </form>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-12 mt-5">
+            <img src="<%= showtime.movie.image %>" width="400rem">            
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>

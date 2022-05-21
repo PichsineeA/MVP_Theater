@@ -1,0 +1,234 @@
+<%- include("partials/header.ejs") %>
+
+    <main>
+        <div class="p-2 p-md-5 mb-4">
+            <div class="bd-example">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            class="active" aria-label="Slide 1" aria-current="true"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2" class=""></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                            aria-label="Slide 3" class=""></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="100%"
+                                height="100%" src="assets/img/poster1.jpg" role="img"
+                                aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice"
+                                focusable="false">
+                            <title>popular</title>
+                            <rect width="100%" height="100%" fill="#777"></rect></img>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="100%"
+                                height="100%" src="assets/img/poster2.jpg" role="img"
+                                aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice"
+                                focusable="false">
+                            <title>coming soon</title>
+                            <rect width="800" height="400" fill="#666"></rect></img>
+
+                        </div>
+                        <div class="carousel-item">
+                            <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="100%"
+                                height="100%" src="assets/img/poster3.jpg" role="img"
+                                aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice"
+                                focusable="false">
+                            <title>popular</title>
+                            <rect width="800" height="400" fill="#555"></rect></img>
+
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-flex flex-wrap justify-content-center">
+            <a href="#" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+                <h1 class="BoxOffice">Box Office</h1>
+            </a>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0" action="/search" method="POST">
+                <input type="search" class="form-control" placeholder="Search..." name="search" aria-label="Search" name="search">
+            </form>
+        </div>
+
+        <div class="album py-5">
+            <div class="container">
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 g-3">
+
+                    <% movie.forEach(function(movie){ %>
+                        <% if (movie.category==='popular' ) { %>
+                            <a href="/movieInfo/<%= movie._id %>">
+                                <div class="col">
+                                    <div class="card" style="width: 13rem;">
+                                        <img src="<%= movie.image %>" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                <%= movie.date %>
+                                            </p>
+                                            <p class="card-text">
+                                                <%= movie.name %>
+                                            </p>
+                                            <% if(!currentUser){ %>
+                                                <form action='/user/favorite/add/<%= movie.id %>' method='post'
+                                                    style="display: inline;">
+                                                    <button class='btn'><i class='bx bx-heart'></i></button>
+                                                </form>
+                                                <% }else if((currentUser.favorite).includes(movie.id)) { %>
+                                                    <form action='/user/favorite/remove/<%= movie.id %>' method='post'
+                                                        style="display: inline;">
+                                                        <button class='btn'><i class='bx bxs-heart'
+                                                                style='color:#e08445'></i></button>
+                                                    </form>
+                                                    <% } else { %>
+                                                        <form action='/user/favorite/add/<%= movie.id %>' method='post'
+                                                            style="display: inline;">
+                                                            <button class='btn'><i class='bx bx-heart'></i></button>
+                                                        </form>
+                                                        <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <% }else { %>
+                                <% } %>
+                                    <% }); %>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-flex flex-wrap justify-content-center">
+            <a href="#" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+                <h1 class="BoxOffice">Now Showing</h1>
+            </a>
+        </div>
+
+        <div class="album py-5">
+            <div class="container">
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                    <% movie.forEach(function(movie){ %>
+
+                        <a href="/movieInfo/<%= movie._id %>">
+                            <div class="col">
+                                <div class="card" style="width: 13rem;">
+                                    <img src="<%= movie.image %>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <%= movie.date %>
+                                        </p>
+                                        <p class="card-text">
+                                            <%= movie.name %>
+                                        </p>
+                                        <% if(!currentUser){ %>
+                                            <form action='/user/favorite/add/<%= movie.id %>' method='post'
+                                                style="display: inline;">
+                                                <button class='btn'><i class='bx bx-heart'></i></button>
+                                            </form>
+                                            <% }else if((currentUser.favorite).includes(movie.id)) { %>
+                                                <form action='/user/favorite/remove/<%= movie.id %>' method='post'
+                                                    style="display: inline;">
+                                                    <button class='btn'><i class='bx bxs-heart'
+                                                            style='color:#e08445'></i></button>
+                                                </form>
+                                                <% } else { %>
+                                                    <form action='/user/favorite/add/<%= movie.id %>' method='post'
+                                                        style="display: inline;">
+                                                        <button class='btn'><i class='bx bx-heart'></i></button>
+                                                    </form>
+                                                    <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <% }); %>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-flex flex-wrap justify-content-center">
+            <p class="lead">
+                <a href="/movie" class="btn btn-lg btn-secondary fw-bold border-white">more</a>
+            </p>
+        </div>
+
+        <div class="allnav">
+            <div class="bd-example py-3">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="news.ejs">
+                            <div id="nva-news">
+                                <h1>Special News</h1>
+                                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspfor movie
+                                    lover</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="news">
+            <div class="album py-5">
+                <div class="container">
+
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                        <div class="text-center">
+                            <img src="/assets/img/1647002166329.jpeg" class="rounded" alt="..." width="250rem">
+                        </div>
+
+                        <div class="text-center">
+                            <img src="/assets/img/1647002191005.jpeg" class="rounded" alt="..." width="250rem">
+                        </div>
+
+                        <div class="text-center">
+                            <img src="/assets/img/1650287179217.jpeg" class="rounded" alt="..." width="250rem">
+                        </div>
+
+                        <div class="text-center">
+                            <img src="/assets/img/1647002257027.jpeg" class="rounded" alt="..." width="250rem">
+                        </div>
+
+                        <div class="text-center">
+                            <img src="/assets/img/1647002289648.jpeg" class="rounded" alt="..." width="250rem">
+                        </div>
+
+                        <div class="text-center">
+                            <img src="/assets/img/1647002312424.jpeg" class="rounded" alt="..." width="250rem">
+                        </div>
+
+                        <div class="text-center">
+                            <img src="/assets/img/1647002372519.jpeg" class="rounded" alt="..." width="250rem">
+                        </div>
+
+                        <div class="text-center">
+                            <img src="/assets/img/1647002406340.jpeg" class="rounded" alt="..." width="250rem">
+                        </div>
+
+                        <div class="text-center">
+                            <img src="/assets/img/1647002443378.jpeg" class="rounded" alt="..." width="250rem">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <%- include("partials/footer.ejs") %>

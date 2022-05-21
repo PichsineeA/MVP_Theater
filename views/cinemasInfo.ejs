@@ -1,0 +1,75 @@
+<%- include("partials/header.ejs") %>
+
+<div class="d-flex">
+    <h1 class="text-light fw-bold">
+        <%= cinemas.name%>
+    </h1>        
+</div>
+<div class="text-light px-md-5 px-xs-0">            
+    <% cinemas.theater.forEach(function(theater){ %>
+        <% var checkTheater = 0; %>
+        <% cinemas.movies.forEach(function(movie){ %>
+            <% if(theater.showtime == ''){ %>
+            <% } else { %>
+                <% var checkPoster = 0; %>
+                <% theater.showtime.forEach(function(showtime){ %>
+                    <% if(checkTheater == 0){ checkTheater++ %>
+                    <h3 class="fw-bold pt-5">Theater <%= theater.theaterNo %><hr></h3>
+                    <% } %>    
+                    <% if(showtime.movie.equals(movie)){  %>                            
+                        <% if(checkPoster == 0){ checkPoster++ %>
+                        <div class="showtime-card rounded-3">    
+                            <div class="row mb-3 shadow"> 
+                                <div class="col-xl-3 col-md-6">                        
+                                    <img src="<%= movie.image %>" width="100px">
+                                </div>
+                                <div class="col-xl-8 col-md-4">
+                                    <h4 class="fw-bold pt-3 pb-2"><%= movie.name %></h4>
+                                    <div class="d-flex">
+                                        <h6><i class='bx bx-time-five'></i><%= movie.time %> mins,&nbsp&nbsp</h6>
+                                        <a href="/movieInfo/<%= movie._id %>"><h6>more details</h6></a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <% var today = new Date %>
+                        <% var timeNow = today.getHours() + ":" + today.getMinutes(); %>
+                            <% if(showtime.time < timeNow){ %>
+                            <div class="d-inline-block px-md-2">
+                                <form action="/movie/cinemas/<%= cinemas._id %>/showtime/<%= showtime._id %>" method="GET">
+                                    <button class="showtime-button" disabled><%= showtime.time %></button>
+                                </form>
+                            </div>  
+                            <% } else{ %>
+                                <div class="d-inline-block px-md-2">
+                                    <form action="/movie/cinemas/<%= cinemas._id %>/showtime/<%= showtime._id %>" method="GET">
+                                        <button class="showtime-button"><%= showtime.time %></button>
+                                    </form>
+                                </div> 
+                            <% } %>
+                            <% }else{ %>
+                            <% var today = new Date %>
+                            <% var timeNow = today.getHours() + ":" + today.getMinutes(); %>
+                            <% if(showtime.time < timeNow){ %>
+                                <div class="d-inline-block px-md-2">
+                                    <form action="/movie/cinemas/<%= cinemas._id %>/showtime/<%= showtime._id %>" method="GET">
+                                        <button class="showtime-button" disabled><%= showtime.time %></button>
+                                    </form>
+                                </div>  
+                                <% } else{ %>
+                                    
+                                    <div class="d-inline-block px-md-2">
+                                        <form action="/movie/cinemas/<%= cinemas._id %>/showtime/<%= showtime._id %>" method="GET">
+                                            <button class="showtime-button"><%= showtime.time %></button>
+                                        </form>
+                                    </div> 
+                                <% } %>
+                        <% } %>
+                    <% } %>
+                <% }); %>
+            <% } %>
+        <% }) %>
+    <% }); %>
+</div>
+<%- include("partials/footer.ejs") %>

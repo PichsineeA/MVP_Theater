@@ -1,0 +1,77 @@
+<%- include('partials/header.ejs') %>
+
+
+<div class="container pt-3">
+    <div>
+        <h2 class="text-light container pt-5">All result for '<%= word %>'</h2>
+        <input class="visually-hidden" value="<%= word %>">
+        <hr class="text-light">
+        <div class="album pt-3">
+            <div class="container px-4">
+                <% if(movie == ''){ %> 
+                <% }else{ %>
+                <div class="d-flex justify-content-between">
+                    <h2 class="text-light fw-bold">Movie</h2>
+                </div>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                    <% movie.forEach(function(movie){ %>
+        
+                        <a href="/movieInfo/<%= movie._id %>">
+                          <div class="col">
+                              <div class="card" style="width: 13rem;">
+                                  <img src="<%= movie.image %>" class="card-img-top" alt="...">
+                                  <div class="card-body">
+                                      <p class="card-text"><%= movie.date %></p>
+                                      <p class="card-text"><%= movie.name %></p>
+                                      <% if(!currentUser){ %>
+                                        <form action='/user/favorite/add/<%= movie.id %>' method='post' style="display: inline;">
+                                          <button class='btn'><i class='bx bx-heart'></i></button>
+                                        </form>
+                                      <% }else if((currentUser.favorite).includes(movie.id)) { %>
+                                        <form action='/user/favorite/remove/<%= movie.id %>' method='post' style="display: inline;">
+                                          <button class='btn'><i class='bx bxs-heart' style='color:#e08445'></i></button>
+                                        </form>
+                                      <% } else { %>
+                                        <form action='/user/favorite/add/<%= movie.id %>' method='post' style="display: inline;">
+                                          <button class='btn'><i class='bx bx-heart'></i></button>
+                                        </form>
+                                      <% } %>
+                                  </div>
+                              </div>
+                          </div>
+                        </a>
+        
+                 <% }); %>
+        
+                </div>
+                </div>
+                <% } %>
+                <% if(cinemas == ''){ %> 
+                    <% }else{ %>
+                    <h2 class="text-light fw-bold">Cinema</h2>
+                </main>
+
+                <div class="cinemaszone">
+                
+                    <div class="container d-flex flex-wrap justify-content-center">
+                        
+                            <h1 class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-decoration-none">Bangkok: Northern</h1>
+                        
+                    </div>
+                
+                    <div class="list-group">
+                        <% cinemas.forEach(function(cinemas){ %>
+                            <% if (cinemas.branch === 'Bangkok: Northern') { %>
+                        <a href="/movie/cinema/<%= cinemas._id %>" class="list-group-item list-group-item-action">&nbsp&nbsp&nbsp&nbsp <%= cinemas.name %></a>
+                        <% }else { %>
+                            <% } %>   
+                        <% }); %>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('partials/footer.ejs') %>x

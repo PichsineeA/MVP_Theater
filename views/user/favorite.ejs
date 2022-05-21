@@ -1,0 +1,82 @@
+<%- include("../partials/header.ejs") %>
+
+  <main>
+
+    <div class="container">
+      <div class="from bg">
+        <div class="p-6 p-md-5 mb-4">
+
+          <div class="container d-flex flex-wrap justify-content-center">
+            <a href="#" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+              <h1 class="Favorite">Favorite</h1>
+            </a>
+          </div>
+
+          <div class="album py-5">
+            <div class="container">
+
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+
+                <% if(movie.length==0) { %>
+                  <div class='mx-3 mt-3'>
+                    <h3>No movie in favorite</h3>
+                  </div>
+                  <% } else { %>
+                    <% movie.forEach((movie)=> { %>
+
+                      <a href="/movieInfo/<%= movie._id %>">
+                        <div class="col">
+                          <div class="card" style="width: 13rem;">
+                            <img src="<%= movie.image %>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <p class="card-text">
+                                <%= movie.date %>
+                              </p>
+                              <p class="card-text">
+                                <%= movie.name %>
+                              </p>
+                              <% if(!currentUser){ %>
+                                <form action='/user/favorite/add/<%= movie.id %>' method='post'
+                                  style="display: inline;">
+                                  <button class='btn'><i class='bx bx-heart'></i></button>
+                                </form>
+                                <% }else if((currentUser.favorite).includes(movie.id)) { %>
+                                  <form action='/user/favorite/remove/<%= movie.id %>' method='post'
+                                    style="display: inline;">
+                                    <button class='btn'><i class='bx bxs-heart' style='color:#e08445'></i></button>
+                                  </form>
+                                  <% } else { %>
+                                    <form action='/user/favorite/add/<%= movie.id %>' method='post'
+                                      style="display: inline;">
+                                      <button class='btn'><i class='bx bx-heart'></i></button>
+                                    </form>
+                                    <% } %>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                      <% }); %>
+                        <% } %>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-flex flex-wrap justify-content-center">
+      <p class="lead">
+        <a href="/user/<%= currentUser._id %>/profile" class="btn btn-lg btn-secondary fw-bold border-white">Profile</a>
+        <a href="/user/<%= currentUser._id %>/history" class="btn btn-lg btn-secondary fw-bold border-white">Purchase History</a>
+      </p>
+    </div>
+
+    </div>
+
+
+  </main>
+
+  <%- include("../partials/footer.ejs") %>

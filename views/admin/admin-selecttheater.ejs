@@ -1,0 +1,74 @@
+<%- include("../partials/headerAdmin.ejs") %>
+
+<div class="py-5">
+    <div class="container d-flex flex-wrap justify-content-center">
+      <a href="#" class="col-12 col-lg-auto mb-3 mb-lg-0 text-dark text-decoration-none">
+        <h2 class="cinemas"><%= cinemas.name %>(<%= cinemas.branch %>)</h2>
+      </a>
+    </div>
+  <div class="row">
+      <div class="col-xl-6 border p-3">
+          <div class="d-flex justify-content-between">
+              <h2 class="fw-bold">Add theater</h2> 
+          </div>
+          <hr>
+          <table class="table" id="table-add">
+              <thead class="h3">
+                  <tr class="align-top">
+                    <th scope="col" class="text-center">Theater No.</th>
+                    <th scope="col" class="text-center">Actions</th>
+                  </tr>
+              </thead>
+              <tbody class="h5">
+
+                <form action="/admin/cinemas/<%= cinemas._id %>/addtheater" method="POST">
+                  <tr class="align-middle">
+                      <td scope="col"><input type="text" class="form-control" placeholder="Create theater" name="theater[theaterNo]"></td>
+                      <td scope="col" class="text-center">
+                
+                    <input type="submit" class="btn btn-lg btn-secondary fw-bold border-white" title="Add theater to cinema">
+        
+                      </td>
+                  </tr>
+                </form>
+
+              </tbody>
+          </table>
+      </div>
+      <div class="col-xl-6 border p-3">
+          <div class="d-flex justify-content-between">
+              <h2 class="fw-bold">Remove theater</h2>
+               
+          </div>
+          <hr>
+          <table class="table" id="table-remove">
+              <thead class="h3">
+                  <tr class="align-top">
+                    <th scope="col" class="text-center">Theater No.</th>
+                    <th scope="col" class="text-center">Actions</th>
+                  </tr>
+              </thead>
+              <tbody class="h5">
+                  <% theaterRemove.forEach(function(theater){ %>
+                  <tr class="align-middle">
+                    <td scope="col"><%= theater.theaterNo %></td>
+                      <td scope="col" class="text-center">
+                            <form action="/admin/cinemas/<%= cinemas._id %>/removetheater/<%= theater._id %>" method="POST">
+                                <button class="btn btn-lg btn-secondary fw-bold border-white" title="Remove theater from cinema">remove</button>
+                            </form>
+                            <form action="/admin/cinemas/<%= cinemas._id %>/theater/<%= theater._id %>/showtime" method="get">
+                                <button class="btn btn-lg btn-secondary fw-bold border-white" title="Remove theater from cinema">showtime</button>
+                            </form>
+                      </td>
+                  </tr>
+                  <% }); %>
+              </tbody>
+          </table>
+      </div>
+  </div>
+<div class="container d-flex flex-wrap justify-content-center">
+      <a href="/admin/cinemas" class="btn btn-lg btn-secondary fw-bold border-white">back</a>
+</div>
+</div>
+
+<%- include("../partials/footerAdmin.ejs") %>

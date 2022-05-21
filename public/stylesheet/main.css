@@ -1,0 +1,189 @@
+* {
+    font-family: 'Varela Round', sans-serif;
+    color: #ffff;
+}
+
+footer {
+    width: 101%;
+    background: linear-gradient(rgba(63, 62, 62, 0.9), rgb(34, 34, 33) 30%);
+}
+
+body {
+    width: 99%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.901);
+}
+
+.allnav{
+    margin-left: 1%;
+    background: linear-gradient(to bottom right, rgb(92, 33, 10), rgba(222, 84, 30, 0.9) 195%);
+
+}
+
+.blog-header-logo{
+    font-size: 50px;
+}
+
+.modal-content {
+    background: linear-gradient(to bottom, rgb(25, 9, 3), rgba(151, 59, 22, 0.9) 185%);
+    text-align: center; 
+}
+
+label{
+    color:#615f5ffe;
+}
+
+.w-100.btn.btn-lg.btn-primary {
+    background: #EAD2AC;
+    color:#615f5ffe;
+}
+
+a:link { text-decoration: none; }
+
+.alert.alert-danger {
+    width: 99%;
+}
+
+
+
+
+
+/* index */
+.nav-scroller.py-1.mb-2 {
+    margin-bottom: 20rem;
+}
+
+.dropdown.text-end{
+    margin-right: 2%;
+}
+
+.form-floating {
+    padding: 10px;
+}
+
+.p-2.link-secondary {
+    color: #ffff;
+}
+
+.card4 {
+    margin-left: 1rem;
+    background: rgba(0, 0, 0, 0.164);
+}
+
+.btn.btn-lg.btn-secondary.fw-bold.border-white {
+    background: #EAD2AC;
+    color:#615f5ffe;
+}
+.btn.btn-lg.btn-secondary.fw-bold.border-white:hover {
+    background: #f0cf9a;
+    color:#272525fe;
+}
+
+
+
+
+
+/* movie */
+.card {
+    margin-left: 5rem;
+    background: rgba(0, 0, 0, 0.164);
+}
+
+.container.d-flex.flex-wrap.justify-content-center{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.btn.create.btn-outline-warning.dropdown-toggle{
+    color: #EAD2AC;
+}
+
+.btn.create.btn-outline-warning.dropdown-toggle:hover{
+    color: #2b2b2b;
+    background: #EAD2AC;
+}
+
+
+
+
+
+/* cinemas */
+.rounded.float-start {
+    background-color: lightgrey;
+    width: 150px;
+    height: 120px;
+    padding: 20px;
+}
+
+.list-group-item.list-group-item-action {
+    background: rgba(255, 255, 255, 0);
+    color: #ffff
+}
+
+.list-group {
+    padding-bottom: 5rem;
+    border-left: 1px solid #EAD2AC;
+    height: 180px;
+}
+
+.cinemaszone {
+    padding-bottom: 5rem;
+    padding-left: 10rem;
+}
+
+.icon {
+    width: 12.5rem;
+    height: 12rem;
+    padding: 4px;
+    border-radius: 2rem;
+}
+
+
+
+
+
+/* faqs */
+#faq {
+    border-radius: 2rem;
+    background: #ead2acc6;
+}
+
+
+
+
+
+/* movieInfo*/
+.p-6.p-md-5.mb-4 {
+    background: #504e4e18;
+}
+
+.from.bg {
+    background: #ead2ac54;
+}
+
+
+
+
+/*seat*/
+.screenBox{
+    width: 50%;
+    height: 2rem;
+    background: #605d5d;
+    border-radius: 9px;
+}
+/* .text-light{
+    text-align: center;
+} */
+.text-light.h4.py-2{
+    text-align: center;
+}
+
+
+
+
+
+/*admin*/
+#admin-cinemas-movie-theater-button {
+    position: absolute;
+    top: 4px;
+}

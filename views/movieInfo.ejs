@@ -1,0 +1,104 @@
+<%- include("partials/header.ejs") %>
+
+    <br><br><br>
+    <div class="container">
+        <div class="p-6 p-md-5 mb-4">
+
+
+            <div class="row g-3">
+
+                <div class="col-md-7 col-lg-4">
+                    <img src="<%= movie.image %>" alt="..." width="200rem">
+                </div>
+
+
+                <div class="col-md-5 col-lg-4 order-md-last">
+                    <p>
+                        <%= movie.name %>
+                    </p>
+                    <p>
+                        <%= movie.date %>
+                    </p>
+                    <p>
+                        <%= movie.time %> mins
+                    </p>
+                    <video width="500" controls autoplay>
+                        <source src="<%= movie.video %>" type="video/mp4">
+                    </video>
+                </div>
+
+            </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+
+                        <h2>Director</h2>
+                        <h5>
+                            <br>
+                            <%= movie.director %>
+                        </h5>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+                <h2>Synopsis</h2>
+                <p>
+                    <%= movie.synopsis %>
+                </p>
+                <br><br><br><br><br><br>
+
+            
+
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="container">
+        <div class="from bg">
+            
+        </div>
+
+        <div class="container d-flex flex-wrap justify-content-center">
+            <p class="lead">
+                <a href="/movie/movieInfo/<%= movie._id %>/booking" class="btn btn-lg btn-secondary fw-bold border-white">Show Time</a>
+              </p>
+      </div>
+
+        <div class="p-2 p-md-5 mb-4">
+            <h2>Comment</h2>
+            <form action="/movieInfo/<%= movie._id %>/comment" method="post">
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Add comment</label>
+                    <input type="text" class="form-control" id="exampleInputcomment" name="comment[text]">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+            <br>
+            <% movie.comment.forEach(function(comment){ %>
+                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                <p>
+                    <form action="/comment/<%= comment.id %>/delete?_method=DELETE" method="POST">
+                        <strong>
+                            <%= comment.author.username %>
+                        </strong> - <%= comment.text %>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <button class="text-end" title="Remove comment" method="POST" ><i class='bx bx-trash'></i></button>
+                    </form>
+                </p>
+                <% }else{ %>
+                    <p>
+                        <strong>
+                            <%= comment.author.username %>
+                        </strong> - <%= comment.text %>
+                        
+                    </p>
+            <% } }) %>
+
+        </div>
+    </div>
+
+<%- include("partials/footer.ejs") %>

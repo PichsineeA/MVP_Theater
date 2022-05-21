@@ -1,0 +1,78 @@
+<%- include("../partials/headerAdmin.ejs") %>
+
+<div class="py-5">
+    <div class="container d-flex flex-wrap justify-content-center">
+      <a href="#" class="col-12 col-lg-auto mb-3 mb-lg-0 text-dark text-decoration-none">
+        <h2 class="cinemas"><%= cinemas.name %>(<%= cinemas.branch %>)</h2>
+      </a>
+    </div>
+  <div class="row">
+      <div class="col-xl-6 border p-3">
+          <div class="d-flex justify-content-between">
+              <h2 class="fw-bold">Add movie</h2> 
+          </div>
+          <hr>
+          <table class="table" id="table-add">
+              <thead class="h3">
+                  <tr class="align-top">
+                    <th scope="col" class="text-center">Poster</th>
+                    <th scope="col">Name</th>
+                    <th scope="col" class="text-center">Release date</th>
+                    <th scope="col" class="text-center">Actions</th>
+                  </tr>
+              </thead>
+              <tbody class="h5">
+                  <% movieAdd.forEach(function(movie){ %>
+                    <% if (movie.status==='Now Showing' ) { %>
+                  <tr class="align-middle">
+                      <td scope="col" class="text-center"><img src="<%= movie.image %>" class="img-poster-edit" width="30px"></td>
+                      <td scope="col"><%= movie.name %></td>
+                      <td scope="col" class="text-center"><%= movie.date %></td>
+                      <td scope="col" class="text-center">
+                          <form action="/admin/<%= cinemas._id %>/addmovie/<%= movie._id %>" method="POST">
+                              <button class="btn btn-lg btn-secondary fw-bold border-white" title="Add movie to cinema">Add</button>
+                          </form>
+                      </td>
+                  </tr>
+                  <% } }); %>
+              </tbody>
+          </table>
+      </div>
+      <div class="col-xl-6 border p-3">
+          <div class="d-flex justify-content-between">
+              <h2 class="fw-bold">Remove movie</h2>
+               
+          </div>
+          <hr>
+          <table class="table" id="table-remove">
+              <thead class="h3">
+                  <tr class="align-top">
+                    <th scope="col" class="text-center">Poster</th>
+                    <th scope="col">Name</th>
+                    <th scope="col" class="text-center">Release date</th>
+                    <th scope="col" class="text-center">Actions</th>
+                  </tr>
+              </thead>
+              <tbody class="h5">
+                  <% movieRemove.forEach(function(movie){ %>
+                  <tr class="align-middle">
+                      <td scope="col" class="text-center"><img src="<%= movie.image %>" class="img-poster-edit" width="30px"></td>
+                      <td scope="col"><%= movie.name %></td>
+                      <td scope="col" class="text-center"><%= movie.date %></td>
+                      <td scope="col" class="text-center">
+                          <form action="/admin/<%= cinemas._id %>/removemovie/<%= movie._id %>" method="POST">
+                              <button class="btn btn-lg btn-secondary fw-bold border-white" title="Remove movie from cinema">remove</button>
+                          </form>
+                      </td>
+                  </tr>
+                  <% }); %>
+              </tbody>
+          </table>
+      </div>
+  </div>
+<div class="container d-flex flex-wrap justify-content-center">
+      <a href="/admin/cinemas" class="btn btn-lg btn-secondary fw-bold border-white">back</a>
+</div>
+</div>
+
+<%- include("../partials/footerAdmin.ejs") %>

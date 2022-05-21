@@ -1,0 +1,101 @@
+<%- include("partials/header.ejs") %>
+<main>
+    <div class="album py-5">
+
+        <div class="container d-flex flex-wrap justify-content-center">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                <img class="icon" src="/assets/img/logonor.jpg" alt="...">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img class="icon" src="/assets/img/logox.jpg" alt="...">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img class="icon" src="/assets/img/logo4d.jpg" alt="...">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-flex flex-wrap justify-content-center">
+        <a href="#" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+            <h1 class="BoxOffice"></h1>
+        </a>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0" action="/search" method="POST">
+            <input type="search" class="form-control" placeholder="Search..." name="search" aria-label="Search" name="search">
+        </form>
+    </div>
+</main>
+
+<div class="cinemaszone">
+
+    <div class="container d-flex flex-wrap justify-content-center">
+        
+            <h1 class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-decoration-none">Bangkok: Northern</h1>
+        
+    </div>
+
+    <div class="list-group">
+        <% cinemas.forEach(function(cinemas){ %>
+            <% if (cinemas.branch === 'Bangkok: Northern') { %>
+        <a href="/movie/cinemas/<%= cinemas._id %>" class="list-group-item list-group-item-action">&nbsp&nbsp&nbsp&nbsp <%= cinemas.name %></a>
+        <% }else { %>
+            <% } %>   
+        <% }); %>
+    </div>
+</div>
+
+<div class="cinemaszone">
+
+    <div class="container d-flex flex-wrap justify-content-center">
+
+            <h1 class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-decoration-none">Bangkok: Eastern</h1>
+        
+    </div>
+    <div class="list-group">
+        <% cinemas.forEach(function(cinemas){ %>
+            <% if (cinemas.branch === 'Bangkok: Eastern') { %>
+        <a href="/movie/cinemas/<%= cinemas._id %>" class="list-group-item list-group-item-action">&nbsp&nbsp&nbsp&nbsp <%= cinemas.name %></a>
+        <% }else { %>
+            <% } %>   
+        <% }); %>
+    </div>
+
+</div>
+
+<div class="cinemaszone">
+
+    <div class="container d-flex flex-wrap justify-content-center">
+
+            <h1 class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-decoration-none">Bangkok: Urban</h1>
+
+    </div>
+    <div class="list-group">
+        
+        <% cinemas.forEach(function(cinemas){ %>
+            <% if (cinemas.branch === 'Bangkok: Urban') { %>
+        <a href="/movie/cinemas/<%= cinemas._id %>" class="list-group-item list-group-item-action">&nbsp&nbsp&nbsp&nbsp <%= cinemas.name %></a>
+        <% }else { %>
+            <% } %>   
+        <% }); %>
+    </div>
+
+</div>
+
+<div class="cinemaszone">
+
+    <div class="container d-flex flex-wrap justify-content-center">
+        
+            <h1 class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-decoration-none">Bangkok: Nonthaburi</h1>
+        
+    </div>
+    <div class="list-group">
+        <% cinemas.forEach(function(cinemas){ %>
+            <% if (cinemas.branch === 'Bangkok: Nonthaburi') { %>
+        <a href="/movie/cinemas/<%= cinemas._id %>" class="list-group-item list-group-item-action">&nbsp&nbsp&nbsp&nbsp <%= cinemas.name %></a>
+        <% }else { %>
+            <% } %>   
+        <% }); %>
+    </div>
+
+</div>
+
+    <%- include("partials/footer.ejs") %>

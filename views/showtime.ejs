@@ -1,0 +1,87 @@
+<%- include('partials/header.ejs') %>
+
+
+<div class="pt-5 container">
+    <h1 class="text-light fw-bold">
+        <a href="javascript:history.back()"><i class="far fa-chevron-left fw-bold pe-2 back-link" aria-hidden="true"></i></a>
+        Theater <%= theater.theaterNo %>
+    </h1>  
+    <div class="text-light shadow border-0">
+        <div class="showtime-card">
+            <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <img src="<%= showtime.movie.image %>" width="100px">
+                </div>
+                <div class="col-xl-8 col-md-4">
+                    <h5 class="pt-5 pb-3"><%= showtime.movie.name %></h5>
+                    <h6 class="pt-2"><i class='bx bx-time-five'></i><%= showtime.time %></h6>
+                    <h6 class="pt-2"><i class='bx bx-chair'></i>Seat available
+                    <% let i = 0; %>                        
+                        <% showtime.seat.forEach(function(seat){ %>
+                            <% if(!seat.available){  %>
+                            <% return i; %>
+                            <% }else{i++;} %>
+                        <% }); %>                       
+                    <%= i %>                           
+                    </h6> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="allnav">
+<div class="showcase bg-transparent d-flex justify-content-center">
+    <li>
+        <div>
+            <input type="checkbox" class="checkbox" id="_checkbox" disabled></input>
+            <label id="labelCheck" for="_checkbox"></label>
+        </div>
+        <p>Available&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+    </li>
+    <li>
+        <div>
+            <input type="checkbox" class="checkbox" id="_checkbox" checked disabled></input>
+            <label id="labelCheck" for="_checkbox" class="occupied"></label>
+        </div>
+        <p>Selected&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+    </li>
+    
+</div>
+</div>
+<br><br><br>
+<div class="movie-screen d-flex justify-content-center">
+    <div class="screenBox">
+        <h3 class="text-light" style="text-align: center;">Screen</h3>
+    </div>
+</div>
+<form method="POST" action="/movie/cinemas/<%= cinemas_id %>/showtime/<%= showtime._id %>/transaction">
+    <div class="px-lg-5 px-xs-0">
+        <div class="row-container">
+            <% const alphabetArray = "ABC".split(""); %>
+            <% for(row=0; row < 4; row++){ %>  
+                               
+                <div class="row-showtime text-light d-flex justify-content-center">                  
+                    <% showtime.seat.forEach(function(seat){ %>
+                        <% if(seat.seatRow == alphabetArray[row]){ %>
+                            <% if(!seat.available){ %>
+                            <input type="checkbox" class="seat occupied checkbox" id="_checkbox<%= seat.seatNo %>" checked disabled></input>
+                            <label id="labelCheck" for="_checkbox<%= seat.seatNo %>" class="occupied"><%= seat.seatNo %></label>
+                            <% }else{ %>
+                            <input class="seat text-center text-light checkbox" id="_checkbox<%= seat.seatNo %>" value="<%= seat.seatNo %>" type="checkbox" name="seatNo">
+                            <label id="labelCheck" for="_checkbox<%= seat.seatNo %>" class="text-light text-center"><%= seat.seatNo %></label>
+                            <% } %>
+                        <% } else{} %>
+                    <% }); %>
+                </div>            
+                <br>
+            <% } %>
+            </div>
+        </div>
+
+    
+    <div class="container d-flex flex-wrap justify-content-center">
+        <button class="btn btn-lg btn-secondary fw-bold border-white" type="submit">Buy</button>
+    </div>
+</form>
+
+<%- include('partials/footer.ejs') %>

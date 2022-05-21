@@ -1,0 +1,79 @@
+<%- include("../partials/headerAdmin.ejs") %>
+
+<div class="py-5">
+    <div class="d-flex justify-content-between">
+        <h2 class="fw-bold">
+            <%= cinema.name %> : Theater <%= theater.theaterNo %>            
+        </h2>
+    </div>
+    <hr>
+    <h3 class="pt-5 pb-3">Add showtime</h3>
+    <form action="/admin/cinemas/<%= cinema._id %>/theater/<%= theater._id %>/showtime" method="POST">
+        <div class="row px-5 pb-5">
+            <div class="col-xl-4">
+                <h5 class="my-3">Select movie</h5>
+                <select class="form-select form-select-lg" name="showtime[movie]" required>
+                    <% cinema.movies.forEach(function(movie){ %>
+                    <option  class="bg-dark" value="<%= movie._id %>"><%= movie.name %></option>
+                    <% }); %>
+                </select>            
+            </div>
+            <div class="col-xl-3">
+                <h5 class="my-3">Showtime</h5>
+                <div class="form-floating">
+                    <input class="form-control" type="time" name="showtime[time]" min="10:00:00" max="22:00:00" id="example-date-input" required>
+                </div>
+            </div>
+            <div class="col-xl-2 mt-1">
+                <button class="btn btn-lg btn-secondary fw-bold border-white">&nbspAdd</button>
+            </div>
+        </div>
+    </form>
+    <table class="table" id="table-showtime">
+        <thead class="h3">
+            <tr class="align-top text-center">
+                <th scope="col">Movie</th>
+                <th scope="col">Showtime</th>
+                <th scope="col">Seat available</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="h5">
+        <% theater.showtime.forEach(function(showtime){ %>
+            <tr class="align-middle text-center">
+                <td scope="col">
+                    <div id="<%= showtime._id %><%= showtime._id %>" style="cursor: pointer;" title="edit">
+                        <img src="<%= showtime.movie.image %>" width="30px" class="img-poster">
+                        <h5><%= showtime.movie.name %></h5>
+                    </div>                                
+                </td>
+                
+                <td scope="col">
+                    <div id="<%= showtime._id %><%= showtime.time %>" style="cursor: pointer;" title="edit">
+                        <%= showtime.time %>
+                    </div>
+                </td>
+                <td scope="col">
+                <% let i = 0; %>                        
+                <% showtime.seat.forEach(function(seat){ %>
+                    <% if(!seat.available){  %>
+                    <% return i; %>
+                    <% }else{i++;} %>
+                <% }); %>                       
+                <%= i %>   
+                </th>
+                <td scope="col">                    
+                    <form action="/admin/cinemas/<%= cinema._id %>/theater/<%= theater._id %>/showtime/<%= showtime._id %>?_method=DELETE" method="POST">
+                        <button title="Remove showtime" class="btn btn-lg btn-secondary fw-bold border-white" method="POST" ><i class='bx bx-trash'></i></button>
+                    </form>                      
+                </td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+    <div class="container d-flex flex-wrap justify-content-center">
+        <a href="/admin/cinemas" class="btn btn-lg btn-secondary fw-bold border-white">back</a>
+  </div>
+</div>
+
+<%- include("../partials/footerAdmin.ejs") %>
