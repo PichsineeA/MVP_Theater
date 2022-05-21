@@ -81,9 +81,10 @@
                 </div>
 
                 <div class="col-12">
-                    <label for="Synopsis" class="form-label">Synopsis</label>
-                    <input type="text" class="form-control" id="director" name="movie[director]"
-                            placeholder="<%= movie.director %>" value="<%= movie.director %>" required>
+                    <label for="synopsis" class="form-label">Synopsis</label>
+                    <textarea type="text" class="form-control" id="director" name="movie[synopsis]"
+                            placeholder="<%= movie.synopsis %>" required>
+                            <%= movie.synopsis %></textarea>
                         <div class="invalid-feedback">
                             Runtime required.
                         </div>
@@ -93,8 +94,8 @@
 
                     <div class="col-12">
                         <label for="Director" class="form-label">Director</label>
-                        <input type="text" class="form-control" id="synopsis" name="movie[synopsis]"
-                            placeholder="<%= movie.synopsis %>" value="<%= movie.synopsis %>" required>
+                        <input type="text" class="form-control" id="synopsis" name="movie[director]"
+                            placeholder="<%= movie.director %>" value="<%= movie.director %>" required>
                         <div class="invalid-feedback">
                             Runtime required.
                         </div>

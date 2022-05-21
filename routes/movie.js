@@ -81,7 +81,7 @@ router.get('/cinemas/:id', function(req, res){
     });
 });
 
-router.get('/cinema/:id/showtime/:showtime_id', function(req, res){
+router.get('/cinemas/:id/showtime/:showtime_id', function(req, res){
     req.session.fromUrl = req.originalUrl;
     Showtime.findById(req.params.showtime_id).populate([{path: 'movie'}, {path: 'seat'}]).exec(function(err, foundShowtime){
         if(err){
