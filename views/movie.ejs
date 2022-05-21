@@ -34,6 +34,7 @@
                           <div class="card-body">
                               <p class="card-text"><%= movie.date %></p>
                               <p class="card-text"><%= movie.name %></p>
+                              <p class="card-text"><i class='bx bxs-star' style='color:#ffd764'  ></i><%= movie.rating %>/10</p>
                               <% if(!currentUser){ %>
                                 <form action='/user/favorite/add/<%= movie.id %>' method='post' style="display: inline;">
                                   <button class='btn'><i class='bx bx-heart'></i></button>

@@ -38,12 +38,14 @@
                             <% if(showtime.time < timeNow){ %>
                             <div class="d-inline-block px-md-2">
                                 <form action="/movie/cinemas/<%= cinemas._id %>/showtime/<%= showtime._id %>" method="GET">
+                                    <h6 class="pt-2"><%= showtime.lng %></h6>
                                     <button class="showtime-button" disabled><%= showtime.time %></button>
                                 </form>
                             </div>  
                             <% } else{ %>
                                 <div class="d-inline-block px-md-2">
                                     <form action="/movie/cinemas/<%= cinemas._id %>/showtime/<%= showtime._id %>" method="GET">
+                                        <h6 class="pt-2"><%= showtime.lng %></h6>
                                         <button class="showtime-button"><%= showtime.time %></button>
                                     </form>
                                 </div> 
@@ -53,13 +55,14 @@
                             <% var timeNow = today.getHours() + ":" + today.getMinutes(); %>
                             <% if(showtime.time < timeNow){ %>
                                 <div class="d-inline-block px-md-2">
+                                    <h6 class="pt-2"><%= showtime.lng %></h6>
                                     <form action="/movie/cinemas/<%= cinemas._id %>/showtime/<%= showtime._id %>" method="GET">
                                         <button class="showtime-button" disabled><%= showtime.time %></button>
                                     </form>
                                 </div>  
                                 <% } else{ %>
-                                    
                                     <div class="d-inline-block px-md-2">
+                                        <h6 class="pt-2"><%= showtime.lng %></h6>
                                         <form action="/movie/cinemas/<%= cinemas._id %>/showtime/<%= showtime._id %>" method="GET">
                                             <button class="showtime-button"><%= showtime.time %></button>
                                         </form>

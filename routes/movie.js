@@ -186,4 +186,15 @@ router.get('/sortByTime', function(req, res){
     });
 });
 
+router.get('/sortByTime', function(req, res){
+    Movie.find({status: "Now Showing"}, function(err, movieLists){
+        if(err){
+            req.flash('error', err.message);;
+            res.redirect('/');
+        }else{
+            movieLists.sort((a, b) => (a.rating > b.rating) ? 1 : -1);
+            res.render('sortMovie.ejs', {movie: movieLists});
+        }
+    });
+});
 module.exports = router;

@@ -19,7 +19,7 @@
       <h1 class="BoxOffice">Now Showing</h1>
     </a>
   </div>
-
+  <div style="height: 100%;">
   <div class="album py-5">
     <div class="container">
 
@@ -34,6 +34,7 @@
                           <div class="card-body">
                               <p class="card-text"><%= movie.date %></p>
                               <p class="card-text"><%= movie.name %></p>
+                              <p class="card-text"><i class='bx bxs-star' style='color:#ffd764'  ></i><%= movie.rating %>/10</p>
                               <% if(!currentUser){ %>
                                 <form action='/user/favorite/add/<%= movie.id %>' method='post' style="display: inline;">
                                   <button class='btn'><i class='bx bx-heart'></i></button>
@@ -58,4 +59,5 @@
     </div>
 </div>
 
-<%- include("partials/footer.ejs") %>
+</div>
+

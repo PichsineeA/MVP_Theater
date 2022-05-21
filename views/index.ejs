@@ -81,6 +81,7 @@
                                             <p class="card-text">
                                                 <%= movie.name %>
                                             </p>
+                                            <p class="card-text"><i class='bx bxs-star' style='color:#ffd764'  ></i><%= movie.rating %>/10</p>
                                             <% if(!currentUser){ %>
                                                 <form action='/user/favorite/add/<%= movie.id %>' method='post'
                                                     style="display: inline;">
@@ -134,6 +135,7 @@
                                         <p class="card-text">
                                             <%= movie.name %>
                                         </p>
+                                        <p class="card-text"><i class='bx bxs-star' style='color:#ffd764'  ></i><%= movie.rating %>/10</p>
                                         <% if(!currentUser){ %>
                                             <form action='/user/favorite/add/<%= movie.id %>' method='post'
                                                 style="display: inline;">

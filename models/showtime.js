@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const showtimeSchema = new mongoose.Schema({
     time: String,
+    lng: String,
     movie:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Movie' 
