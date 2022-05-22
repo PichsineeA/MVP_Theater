@@ -186,7 +186,7 @@ router.get('/sortByTime', function(req, res){
     });
 });
 
-router.get('/sortByTime', function(req, res){
+router.get('/sortByRating', function(req, res){
     Movie.find({status: "Now Showing"}, function(err, movieLists){
         if(err){
             req.flash('error', err.message);;

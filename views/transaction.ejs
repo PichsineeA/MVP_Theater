@@ -23,6 +23,10 @@
                             <h5 class="text-end col-7"><%= showtime.time %></h5>
                         </div>
                         <div class="row my-2">
+                            <h5 class="col-5" style="font-weight: 600;">Language</h5>
+                            <h5 class="text-end col-7"><%= showtime.lng %></h5>
+                        </div>
+                        <div class="row my-2">
                             <h5 class="col-5" style="font-weight: 600;">Theater No.</h5>
                             <h5 class="text-end col-7"><%= theater.theaterNo %></h5>
                         </div>
@@ -57,7 +61,7 @@
                     <input class="visually-hidden" value="<%= seatNo %>" type="text" name="transaction[seat]">
                     <input class="visually-hidden" value="<%= total %>" type="number" name="transaction[total]">
                     <div style="height: 93px;" class="m-0 p-0">
-                        <button class="w-100 h-100 checkout rounded-0">
+                        <button class="w-100 h-100 checkout rounded-0" style="background:#EAD2AC;">
                             <span>Check Out</span>
                         </button>
                         <% if(Array.isArray(seatNo)){ %>                    
