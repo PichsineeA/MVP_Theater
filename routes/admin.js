@@ -6,6 +6,7 @@ const express = require('express'),
     Movie = require('../models/movie'),
     User = require('../models/user'),
     Cinemas = require('../models/cinemas'),
+    Transaction = require('../models/transaction'),
     Theater = require('../models/theater'),
     Showtime = require('../models/showtime'),
     Seat = require('../models/seat'),
@@ -75,15 +76,15 @@ router.get("/:id/edit", function (req, res) {
 var cpUpload = upload.fields([{ name: 'image', maxCount: 1 }, { name: 'video', maxCount: 1 }])
 router.put("/:id", middleware.isLoggedIn, cpUpload, function (req, res) {
     if (req.files) {
-        req.body.image = '/assets/img/poster/' + req.files["image"][0].filename;
-        req.body.video = '/assets/video/' + req.files["video"][0].filename;
+        req.body.movie.image = '/assets/img/poster/' + req.files["image"][0].filename;
+        req.body.movie.video = '/assets/video/' + req.files["video"][0].filename;
     }
     Movie.findByIdAndUpdate(req.params.id, req.body.movie, function (err, updatedMovie) {
         if (err) {
             console.log(err);
-            res.redirect('/admin/');
+            res.redirect('/admin');
         } else {
-            res.redirect('/movieInfo/' + req.params.id);
+            res.redirect('/admin');
         }
     })
 })
@@ -92,9 +93,9 @@ router.delete('/:id', function (req, res) {
     Movie.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
             console.log(err);
-            res.redirect('/admin/');
+            res.redirect('/admin');
         } else {
-            res.redirect('/movie');
+            res.redirect('/admin');
         }
     });
 });
@@ -299,22 +300,9 @@ router.get("/user", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("admin/admin-user.ejs", { user: alluser });
-        }
-    })
-});
-
-router.delete('/user/:id', function (req, res) {
-    User.findByIdAndRemove(req.params.id, function (err, deleteUser) {
-        if (err) {
-            req.flash('error', err.message);
-            res.redirect('/user');
-        } else {
-            req.flash('success', 'Delete user complete');
-            res.redirect('/user');
+            res.render("admin/admin-user.ejs", { user: alluser});
         }
     });
-});
-
+})
 
 module.exports = router;

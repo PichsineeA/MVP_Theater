@@ -56,11 +56,20 @@
                             Runtime required.
                         </div>
                     </div>
+             
+                <div class="col-md-3">
+                    <label for="runtime" class="form-label">Rating</label>
+                    <input type="text" class="form-control" id="time" name="movie[rating]"
+                        placeholder="<%= movie.rating %>" value="<%= movie.rating %>" required>
+                    <div class="invalid-feedback">
+                        rating required.
+                    </div>
                 </div>
+            </div>
 
                 <div class="col-sm-6">
                     <label for="image" class="form-label">Poster</label> 
-                    <input type="file" class="form-control" id="image" name="image" placeholder="<%= movie.image %>" value="<%= movie.image %>"
+                    <input type="file" class="form-control" id="image" name="image" placeholder="<%= movie.image %>"
                         accept="image/*" required>
                         <img src="<%= movie.image %>" height = '300px'>
                     <div class="invalid-feedback">
@@ -70,7 +79,7 @@
 
                 <div class="col-sm-6">
                     <label for="runtime" class="form-label">Trailer</label>
-                    <input type="file" class="form-control" id="trailer" name="video" placeholder="<%= movie.video %>" value="<%= movie.video %>"
+                    <input type="file" class="form-control" id="trailer" name="video" placeholder="trailer"
                         accept="video/*" required>
                         <video width="500" controls>
                             <source src="<%= movie.video %>" type="video/mp4">

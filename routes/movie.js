@@ -37,8 +37,7 @@ router.get("/movieInfo/:id", function (req, res) {
 });
 
 router.get('/movieInfo/:id/booking', function(req, res){
-    req.session.fromUrl = req.originalUrl;
-    Movie.findById(req.params.id).populate('comment').exec(function(err, foundMovie){
+    Movie.findById(req.params.id).exec(function(err, foundMovie){
         if(err){
             console.log(err);
         } else{ 
@@ -59,7 +58,6 @@ router.get('/movieInfo/:id/booking', function(req, res){
 });
 
 router.get('/cinemas/:id', function(req, res){
-    req.session.fromUrl = req.originalUrl;
     Cinemas.findById(req.params.id).populate([{
         path: "theater", 
         option: {sort: {theaterNo: 1}}, 
@@ -71,7 +69,7 @@ router.get('/cinemas/:id', function(req, res){
                 {path:"seat"}
             ]
         }
-    },{path: "movies", populate: {path: "comment"}}
+    },{path: "movies"}
     ]).exec(function(err, foundCinema){
         if(err){
             console.log(err);
@@ -82,7 +80,6 @@ router.get('/cinemas/:id', function(req, res){
 });
 
 router.get('/cinemas/:id/showtime/:showtime_id', function(req, res){
-    req.session.fromUrl = req.originalUrl;
     Showtime.findById(req.params.showtime_id).populate([{path: 'movie'}, {path: 'seat'}]).exec(function(err, foundShowtime){
         if(err){
             console.log(err);

@@ -161,11 +161,11 @@
               <input type="email" class="form-control" id="floatingInput" placeholder="E-mail" name="email">
               <label for="floatingInput">E-mail</label>
             </div>
-            <div class="form-floating">
+            <!-- <div class="form-floating">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Admincode"
                   style="color: gray;" name="admincode">
                 <label for="floatingPassword">Admin code</label>
-              </div>
+              </div> -->
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
           </form>
         </div>
@@ -186,31 +186,31 @@
                 <div class="modal-body">
 
                     <div class="col-md-7 col-lg-8">
-                        <h4 class="mb-3">Movie Infomation</h4>
+                        <h4 class="mb-3">Movie Information</h4>
                         <form class="needs-validation" novalidate action="/admin/addmovie" method="post"
                             enctype="multipart/form-data">
                             <div class="row g-3">
                                 <div class="col-sm-6">
-                                    <label for="firstName" class="form-label">Movie name</label>
+                                    <label for="movieName" class="form-label">Movie name</label>
                                     <input type="text" class="form-control" id="movieName" name="movie[name]"
                                         placeholder="Movie name" value="" required>
                                     <div class="invalid-feedback">
-                                        Valid first name is required.
+                                        Valid Movie name is required.
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label for="lastName" class="form-label">Date</label>
+                                    <label for="Date" class="form-label">Date</label>
                                     <input type="text" class="form-control" id="Date" name="movie[date]"
                                         placeholder="Date" value="" required>
                                     <div class="invalid-feedback">
-                                        Valid last name is required.
+                                      Date is required.
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="Category" class="form-label">Category</label>
-                                    <select class="form-select" id="category" required name="movie[category]">
+                                    <select class="form-select" id="Category" required name="movie[category]">
                                         <option class="bg-dark" value="none">Choose...</option>
                                         <option class="bg-dark">None</option>
                                         <option class="bg-dark">Popular</option>
@@ -221,7 +221,7 @@
                                 </div>
 
                                 <div class="col-md-5">
-                                    <label for="state" class="form-label">Status</label>
+                                    <label for="Stateus" class="form-label">Status</label>
                                     <select class="form-select" id="Status" required name="movie[status]">
                                         <option class="bg-dark" value="none">Choose...</option>
                                         <option class="bg-dark">Coming Soon</option>
@@ -233,26 +233,35 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label for="runtime" class="form-label">Runtime</label>
+                                    <label for="time" class="form-label">Runtime</label>
                                     <input type="text" class="form-control" id="time" name="movie[time]"
                                         placeholder="Runtime" required>
                                     <div class="invalid-feedback">
                                         Runtime required.
                                     </div>
                                 </div>
-                            </div>
+
+                            <div class="col-md-3">
+                              <label for="rating" class="form-label">Rating</label>
+                              <input type="text" class="form-control" id="rating" name="movie[Rating]"
+                                  placeholder="Rating" required>
+                              <div class="invalid-feedback">
+                                  Runtime required.
+                              </div>
+                          </div>
+                      </div>
 
                             <div class="col-12">
                                 <label for="image" class="form-label">Poster</label>
                                 <input type="file" class="form-control" id="image" name="image" placeholder="Image"
                                     accept="image/*" required>
                                 <div class="invalid-feedback">
-                                    image required.
+                                  Poster required.
                                 </div>
                             </div>
 
                             <div class="col-12">
-                                <label for="runtime" class="form-label">Trailer</label>
+                                <label for="trailer" class="form-label">Trailer</label>
                                 <input type="file" class="form-control" id="trailer" name="video" placeholder="trailer"
                                     accept="video/*" required>
                                 <div class="invalid-feedback">
@@ -265,7 +274,7 @@
                                 <textarea class="form-control" id="exampleFormControlTextarea1" name="movie[synopsis]"
                                     placeholder="write..." rows="3"></textarea>
                                 <div class="invalid-feedback">
-                                    Trailer required.
+                                  Synopsis required.
                                 </div>
                             </div>
 
@@ -276,7 +285,7 @@
                                     <input type="text" class="form-control" id="director" name="movie[director]"
                                         placeholder="Director" required>
                                     <div class="invalid-feedback">
-                                        Runtime required.
+                                      Director required.
                                     </div>
                                 </div>
 
